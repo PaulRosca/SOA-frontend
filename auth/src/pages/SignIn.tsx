@@ -10,6 +10,7 @@ export default function SignIn() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (e: any) => {
     e.preventDefault();
     signin({ email, password }).then((userData) => {

@@ -13,6 +13,7 @@ export default function SignUp() {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (password !== confirmPassword) {
