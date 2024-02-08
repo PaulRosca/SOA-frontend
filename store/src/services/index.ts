@@ -7,7 +7,7 @@ export const catalogURL = baseURL + "/catalog";
 export const orderURL = baseURL + "/orders";
 
 export const placeOrder = async (order: Order): Promise<void> => {
-  const response = await axios.post(orderURL + "/", order);
+  const response = await axios.post(orderURL + "/", order, { withCredentials: true });
   return response.data;
 };
 
