@@ -29,7 +29,7 @@ export default function AddProduct() {
     }
   };
   return (
-    <div className="w-full flex p-5 justify-center mt-20">
+    <div className="w-full flex p-5 justify-center mt-5">
       <div className="w-1/2">
         <h1 className="mb-10 text-xl">Add Product</h1>
         <form onSubmit={handleAddProduct}>

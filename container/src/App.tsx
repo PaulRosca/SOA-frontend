@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import ProductList from "store/ProductList";
+import AddProduct from "store/AddProduct";
 import Cart from "store/Cart";
 import SignIn from "auth/SignIn";
 import SignUp from "auth/SignUp";
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />
         <Route path="/cart" element={<Cart user={user}/>} />
+        <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/" element={HeaderWrapper(ProductList)} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>

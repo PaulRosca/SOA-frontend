@@ -24,7 +24,7 @@ export const addProduct = async (product: Omit<Product, "id">, image: File): Pro
   formData.append("category", product.category);
   formData.append("price", product.price);
   formData.append("stock", product.stock);
-  const response = await axios.post("/", formData, {
+  const response = await axios.post(catalogURL + "/", formData, {
     headers: {
       "Content-Type": "multipart/form-data"
     },
