@@ -6,6 +6,7 @@ export interface User extends Credentials {
   id?: string,
   first_name: string,
   last_name: string,
+  type: string
 }
 
 export interface UserContextProps {
