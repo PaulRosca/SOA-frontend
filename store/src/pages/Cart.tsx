@@ -50,10 +50,13 @@ export default function Cart({ user }: Props) {
   const handlePlaceOrder = () => {
     const order: Order = {
       email,
-      address: [street,city,country].join(","),
-      products: cart.map((ci) => ({id: ci.productId, quantity: ci.quantity}))
+      address: [street, city, country].join(","),
+      products: cart.map((ci) => ({ id: ci.productId, quantity: ci.quantity }))
     };
-    placeOrder(order).then(() => navigate("/?clearCart=true")).catch((err) => console.log(err));
+    placeOrder(order).then(() => {
+      setCart([]);
+      navigate("/");
+    }).catch((err) => console.log(err));
   };
 
   const [email, setEmail] = useState(user?.email || "");
@@ -113,13 +116,13 @@ export default function Cart({ user }: Props) {
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
                   City
                 </label>
-                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" value={city} onChange={(e) => setCity(e.target.value)}/>
+                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" value={city} onChange={(e) => setCity(e.target.value)} />
               </div>
               <div className="w-full md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-county">
                   County
                 </label>
-                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-county" type="text" value={country} onChange={(e) => setCountry(e.target.value)}/>
+                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-county" type="text" value={country} onChange={(e) => setCountry(e.target.value)} />
               </div>
             </div>
             <div className="flex flex-wrap -mx-3 mb-6">
