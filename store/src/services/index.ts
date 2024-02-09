@@ -21,6 +21,16 @@ export const getOrders = async (): Promise<ReturnOrder[]> => {
   return response.data;
 };
 
+export const updateProductStock = async(id: number, stock: number) => {
+  const response = await axios.patch(catalogURL + "/" + id, { stock }, { withCredentials: true });
+  return response.data;
+};
+
+export const getProductStock = async (id: number): Promise<number> => {
+  const response = await axios.get(catalogURL + "/" + id + "/stock", { withCredentials: true, headers: { "Content-Type": "application/json" } });
+  return response.data;
+};
+
 
 export const getProducts = async (ids: number[] = []): Promise<Product[]> => {
   const response = await axios.get(catalogURL + "/", { params: { ids: ids.join(",") } });

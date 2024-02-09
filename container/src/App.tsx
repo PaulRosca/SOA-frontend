@@ -33,8 +33,8 @@ const App = () => {
         <Route path="/signout" element={<SignOut />} />
         <Route path="/cart" element={HeaderWrapper(() => (<Cart user={user}/>))} />
         <Route path="/addProduct" element={HeaderWrapper(AddProduct)} />
-        <Route path="/orders" element={HeaderWrapper(Orders)} />
-        <Route path="/" element={user && user.type === "admin" ? HeaderWrapper(() => <Orders isAdmin/>) : HeaderWrapper(ProductList)} />
+        <Route path="/orders" element={HeaderWrapper(() => <Orders isAdmin={user && user.type === "admin"}/>)} />
+        <Route path="/" element={HeaderWrapper(() => <ProductList isAdmin={user && user.type === "admin"}/>)} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </Router>

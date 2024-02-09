@@ -16,7 +16,11 @@ export default function Header() {
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 border-b-2">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <div className="flex items-center lg:order-2">
-            <a className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800" onClick={() => navigate("/cart")}>Cart <span className="rounded bg-red-500 text-white px-2 py-1">{cart.reduce((count: any, item: any) => count + item.quantity, 0)}</span></a>
+            {
+              (!user || !user.type === "adming") && (
+                <a className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800" onClick={() => navigate("/cart")}>Cart <span className="rounded bg-red-500 text-white px-2 py-1">{cart.reduce((count: any, item: any) => count + item.quantity, 0)}</span></a>
+              )
+            }
             {
               user ? (
                 <>
@@ -48,7 +52,7 @@ export default function Header() {
                 )
               }
               {
-                user && user.type === 'regular' && (
+                user && (
                   <li>
                     <a className={location.pathname === "/orders" ? activeLink : link} onClick={() => navigate("/orders")}>Orders</a>
                   </li>

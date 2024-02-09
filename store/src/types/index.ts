@@ -9,6 +9,7 @@ export interface Product {
 
 export interface ProductComponent extends Product {
   addToCart: (productId: number, quantity: number) => void
+  isAdmin: boolean
 }
 
 export interface CartItem {
