@@ -33,3 +33,20 @@ export interface Order {
   address: string,
   products: OrderProduct[]
 }
+
+export interface ReturnProduct {
+  id: string,
+  title: string,
+  description: string,
+  quantity: number,
+  price: number
+}
+
+export interface ReturnOrder {
+  id: string,
+  email: string,
+  address: string,
+  status: string,
+  timestamp: string,
+  products: ReturnProduct[]
+}

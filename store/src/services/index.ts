@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Order, Product } from "../types";
+import { Order, Product, ReturnOrder } from "../types";
 
 const baseURL = "http://localhost:9000";
 
@@ -10,6 +10,12 @@ export const placeOrder = async (order: Order): Promise<void> => {
   const response = await axios.post(orderURL + "/", order, { withCredentials: true });
   return response.data;
 };
+
+export const getOrders = async (): Promise<ReturnOrder[]> => {
+  const response = await axios.get(orderURL + "/", { data: null, withCredentials: true, headers: { "Content-Type": "application/json" }});
+  return response.data;
+};
+
 
 export const getProducts = async (ids: number[] = []): Promise<Product[]> => {
   const response = await axios.get(catalogURL + "/", { params: { ids: ids.join(",") } });

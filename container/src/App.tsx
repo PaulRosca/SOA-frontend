@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import ProductList from "store/ProductList";
 import AddProduct from "store/AddProduct";
 import Cart from "store/Cart";
+import Orders from "store/Orders";
 import SignIn from "auth/SignIn";
 import SignUp from "auth/SignUp";
 import SignOut from "auth/SignOut";
@@ -30,8 +31,9 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />
-        <Route path="/cart" element={<Cart user={user}/>} />
-        <Route path="/addProduct" element={<AddProduct />} />
+        <Route path="/cart" element={HeaderWrapper(() => (<Cart user={user}/>))} />
+        <Route path="/addProduct" element={HeaderWrapper(AddProduct)} />
+        <Route path="/orders" element={HeaderWrapper(Orders)} />
         <Route path="/" element={HeaderWrapper(ProductList)} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>

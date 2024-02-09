@@ -48,6 +48,7 @@ module.exports = (_, argv) => ({
         "./ProductList": "./src/pages/ProductList",
         "./AddProduct": "./src/pages/AddProduct",
         "./Cart": "./src/pages/Cart",
+        "./Orders": "./src/pages/Orders",
         "./Context": "./src/context"
       },
       shared: {
