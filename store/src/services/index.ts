@@ -11,6 +11,11 @@ export const placeOrder = async (order: Order): Promise<void> => {
   return response.data;
 };
 
+export const updateOrder = async (orderId: number, status: string): Promise<void> => {
+  const response = await axios.patch(orderURL + "/" + orderId, { status }, { withCredentials: true });
+  return response.data;
+};
+
 export const getOrders = async (): Promise<ReturnOrder[]> => {
   const response = await axios.get(orderURL + "/", { data: null, withCredentials: true, headers: { "Content-Type": "application/json" }});
   return response.data;

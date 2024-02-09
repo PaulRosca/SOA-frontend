@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { getOrders } from "../services";
+import { getOrders, updateOrder } from "../services";
 import { ReturnOrder } from "../types";
 
-export default function Orders() {
+interface Props {
+  isAdmin: boolean
+}
+export default function Orders({ isAdmin }: Props) {
   const [orders, setOrders] = useState<ReturnOrder[]>([]);
+  const updateStatus = (ordId: number, status: string) => {
+    updateOrder(ordId, status);
+    setOrders((ords) => {
+      const newOrds = [...ords];
+      const ord = newOrds.find((ord) => ord.id === ordId);
+      if (ord) {
+        ord.status = status;
+      }
+      return newOrds;
+    });
+  };
   useEffect(() => {
     getOrders().then((ords) => setOrders(ords)).catch((err) => console.log(err));
   }, []);
@@ -37,9 +51,18 @@ export default function Orders() {
                 }
               </ul>
               <div className="flex justify-between items-center mt-2">
-                <div className={`rounded py-1 px-2 text-white ${ord.status === "processing" ? "bg-gray-500" : "bg-green-500"}`}>
-                  {ord.status}
-                </div>
+                {
+                  isAdmin ? (
+                    <select data-te-select-init value={ord.status} onChange={(e) => updateStatus(ord.id, e.target.value)}>
+                      <option value="processing">processing</option>
+                      <option value="shipped">shipped</option>
+                    </select>
+                  ) : (
+                    <div className={`rounded py-1 px-2 text-white ${ord.status === "processing" ? "bg-gray-500" : "bg-green-500"}`}>
+                      {ord.status}
+                    </div>
+                  )
+                }
                 <div>
                   {ord.timestamp}
                 </div>
@@ -48,6 +71,6 @@ export default function Orders() {
           );
         })
       }
-    </div>
+    </div >
   );
 }

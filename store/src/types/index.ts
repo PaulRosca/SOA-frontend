@@ -43,7 +43,7 @@ export interface ReturnProduct {
 }
 
 export interface ReturnOrder {
-  id: string,
+  id: number,
   email: string,
   address: string,
   status: string,

@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/cart" element={HeaderWrapper(() => (<Cart user={user}/>))} />
         <Route path="/addProduct" element={HeaderWrapper(AddProduct)} />
         <Route path="/orders" element={HeaderWrapper(Orders)} />
-        <Route path="/" element={HeaderWrapper(ProductList)} />
+        <Route path="/" element={user && user.type === "admin" ? HeaderWrapper(() => <Orders isAdmin/>) : HeaderWrapper(ProductList)} />
         <Route path="*" element={<Navigate replace to="/" />} />
       </Routes>
     </Router>
